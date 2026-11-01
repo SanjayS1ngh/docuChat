@@ -11,8 +11,8 @@ dns.setServers(['8.8.8.8', '1.1.1.1']);
 app.use(cors({ origin: process.env.CLIENT_URL }));
 app.use(express.json({ limit: '1mb' }));
 app.use('/api', rateLimit({ windowMs: 15 * 60 * 1000, limit: 200 }));
-
 app.get('/api/health', (req, res) => res.json({ ok: true }));
+app.use('/api/auth', require('./routes/auth'));
 
 
 app.use((err, req, res, next) => {
